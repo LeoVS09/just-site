@@ -39,7 +39,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({template: './src/index.jade', inject: "head"}),
+        new HtmlWebpackPlugin({template: './src/index.jade'}), //, inject: "head"
         new webpack.LoaderOptionsPlugin({
             options: {
                 stylus: {

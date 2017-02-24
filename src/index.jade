@@ -22,11 +22,9 @@ html
                     p=word
         div#root
             header
-                div.parallax
-                    div(class="layer back")
-                        p.head-text Vlad
-                    //div(class="layer base")
-                    //    p.head-text Goncharov
+                div(class="fullscreen background parallax"  data-img-width="1600" data-img-height="1064" data-diff="100")
+                    div(class="content-a")
+                        div(class="content-b") Centered content
             main.block-list
                 - var tags = paragraphs;
                 - var names = paragraphs.map(str => str.toUpperCase() );
