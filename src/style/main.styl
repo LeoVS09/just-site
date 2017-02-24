@@ -1,0 +1,78 @@
+parallax-images-height=500px
+
+*
+  font-family Roboto
+html
+  height 100%
+  width 100%
+  margin 0
+  padding 0
+.parallax
+  height 100%
+  width 100%
+  background url('../images/header.jpg') no-repeat center center fixed
+  transform: translateZ(-1px) ;
+  background-size cover
+  overflow hidden
+  .back
+
+    .head-text
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%,-50%)
+
+body
+  //display flex
+  //flex-direction column
+  //justify-content flex-end
+  //align-content flex-end
+  @extend html
+  nav
+    position fixed
+    display flex
+    justify-content center
+    width 100%
+    .nav-button
+      width auto
+      margin 1em 1em
+      p
+        display inline
+        width auto
+  #root
+    height 100%
+    header, main, footer
+      margin auto
+    header
+      height 100%
+    main
+      flex 1
+      .paragraph
+        display flex
+        flex-direction column
+        h1
+          width auto
+          margin auto
+        .works-image
+          @extend .parallax
+          background-image url('../images/about.jpg')
+        .contact-image
+          @extend .parallax
+          background-image url('../images/contact.jpg')
+        .works-image,.contact-image
+          height: parallax-images-height
+        .cards
+          display flex
+          flex-flow row wrap
+          justify-content space-around
+          .card
+            box-shadow 0 0 10px rgba(0,0,0,0.5)
+            margin 1em
+            padding 2em
+            p
+              display inline
+
+@media only screen and (max-device-width: 1024px)
+  .parallax
+    background-attachment scroll
+
