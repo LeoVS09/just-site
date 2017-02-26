@@ -1,0 +1,60 @@
+@import "header.styl"
+@import "parallax.styl"
+
+parallax-images-height=500px
+
+*
+  font-family Roboto
+html
+  height 100%
+  width 100%
+  margin 0
+  padding 0
+
+
+body
+  @extend html
+  nav
+    position fixed
+    display flex
+    justify-content center
+    width 100%
+    .nav-button
+      width auto
+      margin 1em 1em
+      p
+        display inline
+        width auto
+  #root
+    height 100%
+    header, main, footer
+      margin auto
+    main
+      flex 1
+      .paragraph
+        display flex
+        flex-direction column
+        h1
+          width auto
+          margin auto
+        .skills-image
+          parallax(url('../images/skills.jpg'))
+        .works-image
+          parallax(url('../images/works.jpg'))
+        .contact-image
+          parallax(url('../images/contact.jpg'))
+        .works-image,.contact-image, .skills-image
+          height: parallax-images-height
+        .cards
+          display flex
+          flex-flow row wrap
+          justify-content space-around
+          .card
+            box-shadow 0 0 10px rgba(0,0,0,0.5)
+            margin 1em
+            padding 2em
+            p
+              display inline
+.dynamic-parallax
+  background-image url('../images/header.jpg')
+

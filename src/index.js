@@ -1,5 +1,6 @@
-import stylus from "./style/main.styl"
+import stylus from "./style/index.styl"
 import $ from "jquery"
+
 
 /* detect touch */
 if("ontouchstart" in window){
@@ -7,7 +8,7 @@ if("ontouchstart" in window){
 }
 if(!$("html").hasClass("touch")){
     /* background fix */
-    $(".parallax").css("background-attachment", "fixed");
+    $(".dynamic-parallax").css("background-attachment", "fixed");
 }
 
 /* fix vertical when not overflow
@@ -15,8 +16,8 @@ if(!$("html").hasClass("touch")){
 function fullscreenFix(){
     var h = $('body').height();
     // set .fullscreen height
-    $(".content-b").each(function(i){
-        if($(this).innerHeight() > h){ $(this).closest(".fullscreen").addClass("overflow");
+    $(".dynamic-parallax--content").each(function(i){
+        if($(this).innerHeight() > h){ $(this).closest(".dynamic-parallax").addClass("overflow");
         }
     });
 }
@@ -26,7 +27,7 @@ fullscreenFix();
 /* resize background images */
 function backgroundResize(){
     var windowH = $(window).height();
-    $(".background").each(function(i){
+    $(".dynamic-parallax").each(function(i){
         var path = $(this);
         // variables
         var contW = path.width();
@@ -39,7 +40,7 @@ function backgroundResize(){
         diff = diff ? diff : 0;
         // remaining height to have fullscreen image only on parallax
         var remainingH = 0;
-        if(path.hasClass("parallax") && !$("html").hasClass("touch")){
+        if(path.hasClass("dynamic-parallax") && !$("html").hasClass("touch")){
             var maxH = contH > windowH ? contH : windowH;
             remainingH = windowH - contH;
         }
@@ -67,7 +68,7 @@ function parallaxPosition(e){
     var topWindow = $(window).scrollTop();
     var bottomWindow = topWindow + heightWindow;
     var currentWindow = (topWindow + bottomWindow) / 2;
-    $(".parallax").each(function(i){
+    $(".dynamic-parallax").each(function(i){
         var path = $(this);
         var height = path.height();
         var top = path.offset().top;
@@ -99,3 +100,4 @@ if(!$("html").hasClass("touch")){
     $(window).scroll(parallaxPosition);
     parallaxPosition();
 }
+
