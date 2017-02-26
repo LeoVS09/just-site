@@ -22,31 +22,132 @@ html
         div#root
             header
                 //image ratio must be 16/9
-                div.dynamic-parallax(data-img-width="1600" data-img-height="1064" data-diff="100")
+                div.dynamic-parallax
                     div.dynamic-parallax--content
                         h1 HELLO
                         h1 I'M
                             span  GONCHAROV VLADISLAV
                         h2 Frontend & Backend Developer
-            main.block-list
-                - var tags = paragraphs;
-                - var names = ["Who I","What i can", "What I do", "Get in touch"];
-                - var cards = [["I designed this site so you can get to know me on a personal level. My career as a professional photographer, my portfolio, my personal photography, my blog, my favourite quotes, and so much more. So please sit back and enjoy!."],["Разработка под андройд на нативе","Серверы на связке Java Spring + Hibernate + MySQL","Скрипты и серверы на python (пример парсера на SRL + Pewee + MySQL)","SPA на ReactJS и Redux ( и open source library )","Разработка десктопных приложений на C++","Небольшой опыт разработки на ts и angular","Занимался олимпиадным программированием","Интересуюсь UX дизайном","Быстро обучаюсь"],["Out believe has request not how comfort evident.","Up delight cousins we feeling minutes.","Genius has looked end piqued spring.","Down has rose feel find man.","Learning day desirous informed expenses material returned six the.","She enabled invited exposed him another.","Reasonably conviction solicitude me mr at discretion reasonable.","Age out full gate bed day lose."],["89111185177","https:/github.com/LeoVS09","LeoVS010@gmail.com"]];
-                - var images = [0,1,1,1];
-                - var blocks = [];
-                - for(var i = 0; i < tags.length; i++){
-                -   blocks.push({ tag: tags[i], name: names[i], cards: cards[i], image: images[i] });
-                - }
+            main
+                -
+                    var tags = paragraphs;
+                    var names = [
+                        "Who I",
+                        "What I can",
+                        "What I did",
+                        "Get in touch"
+                    ];
+                    var texts = [
+                        "I'm a web/app developer based on Saint-Petersburg, Russia. I have a passion for programming and like task that challenge to me.",
+                        "I'm a developer, so I know how to resolve you problem using the latest technologies available.",
+                        "You can see code some of my projects.",
+                        "I’m currently available for work."
+                    ]
+                    var cards = [
+                        [],
+                        [
+                            "Android app developing",
+                            "Servers on Java Spring + Hibernate",
+                            "Building architecture MySQL or NoSQL database",
+                            "SPA on ReactJS and Redux",
+                            "Desktop program on C++"
+                        ],
+                        [
+                            "Java sever for mobile multiplayer game",
+                            "Python parser",
+                            "Quantum tic-tac-toe SPA",
+                            "Open source library for redux"
+                        ],
+                        [
+                            0,
+                            0,
+                            "LeoVS010@gmail.com"
+                        ]
+                    ];
+                    var links = [
+                        [],
+                        [],
+                        [
+                            "https://github.com/LeoVS09/SN-Munchkin-server",
+                            "https://github.com/LeoVS09/learning-parser",
+                            "https://leovs09.github.io/Tic-tac-toe/",
+                            "https://github.com/LeoVS09/Captain-redux"
+                        ],
+                        [
+                            "https:/github.com/LeoVS09",
+                            "https://vk.com/id234222638"
+                        ]
+                    ];
+                    var icons = [
+                        [],
+                        [
+                            require("./images/icon-android.jpg"),
+                            require("./images/icon-spring.png"),
+                            require('./images/icon-mysql.svg'),
+                            require("./images/icon-react.png"),
+                            require('./images/icon-c.jpg')
+                        ],
+                        [
+                            require("./images/icon-java.png"),
+                            require("./images/icon-python.png"),
+                            require("./images/icon-quantum.png"),
+                            require("./images/icon-redux.png")
+                        ],
+                        [
+                            require("./images/icon-github.png"),
+                            require("./images/icon-vk.png")
+
+                        ]
+                    ]
+                    var images = [0,1,1,1];
+                    var separators = [1]
+                    var blocks = [];
+                    for(var i = 0; i < tags.length; i++){
+                        blocks.push({
+                            tag: tags[i],
+                            name: names[i],
+                            text: texts[i],
+                            cards: cards[i].map(
+                                (text,k) => ({
+                                    text,
+                                    icon: icons[i][k],
+                                    link: links[i][k]
+                                })
+                            ),
+                            image: images[i],
+                            separator: separators[i]
+                        });
+                    }
+
+                mixin mCard(card)
+                    div.card
+                        if card.icon
+                            img(src=card.icon)
+                        if card.text
+                            p=card.text
+
                 mixin block(data)
                     div(class=(data.tag + " paragraph"))
-                        h1= data.name
                         if data.image
                             div(class=(data.tag + "-image"))
-                        div.cards
-                            each card in data.cards
-                                div.card
-                                    p=card
+                                h1= data.name
+                        else
+                            h1= data.name
+                        if data.separator
+                            div.container-separator
+                                div.separator  ⌘
+                        if data.text
+                            p.text #{data.text}
+                        if data.cards.length
+                            div.cards
+                                each card in data.cards
+                                    if card.link
+                                        a(href=card.link)
+                                            +mCard(card)
+                                    else
+                                        +mCard(card)
                 each data in blocks
                     +block(data)
             footer.footer
-                h4 foot
+                p © 2017 Goncharov Vladislav. All rights reserved.
+                //TODO: reference to repository of site

@@ -44,7 +44,5 @@
     "stylus-loader": "^2.5.0",
     "webpack": "^2.2.1"
   },
-  "dependencies": {
-    "jquery": "^3.1.1"
-  }
+  "dependencies": {}
 }

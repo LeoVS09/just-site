@@ -1,0 +1,78 @@
+@import "config.styl"
+@import "separator.styl"
+@import "images.styl"
+
+@keyframes shadow
+  from
+    box-shadow 0 20px 60px -27px rgba(0,0,0,0.5)
+  to
+    box-shadow 0 1px 40px 0 rgba(0,0,0,0.3)
+
+main
+  flex 1
+  .paragraph
+    display flex
+    flex-direction column
+    h1
+      font-size 3em
+      margin auto
+      padding 0
+      color additional-color
+    .text
+      margin 0.5em auto 3em
+      width 45%
+      text-align center
+      font-size 1.5em
+      color text-color
+    .cards
+      display flex
+      flex-flow row wrap
+      justify-content space-around
+      margin auto
+      width 65%
+      margin-bottom 5rem
+      .card
+        box-shadow 0 20px 60px -27px rgba(0,0,0,0.5)
+        display flex
+        flex-direction column
+        width 20vmin
+        margin 2em 1em 0 1em
+        p
+          text-align center
+          color text-color
+        img
+          height 7vmin
+          width 7vmin
+          margin auto
+      a > .card:hover
+        animation-name shadow
+        animation-duration 0.1s
+        animation-fill-mode forwards
+  .about
+    h1
+      height auto
+      margin 1.5em auto 0.5em
+      color main-color
+      position static
+  a
+    text-decoration none
+    color main-color
+    &:visited
+      color main-color
+  .contact
+    .cards
+      margin-bottom 0
+      justify-content center
+      a
+        margin 1em 0.2em
+      p
+        margin-left 1em
+        color text-color
+      .card
+        box-shadow none
+        margin auto 0 0 0
+        width auto
+        height auto
+        img
+          height 3vmin
+          width 3vmin

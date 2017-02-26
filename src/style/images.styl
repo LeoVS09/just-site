@@ -1,0 +1,19 @@
+@import "config.styl"
+
+parallax()
+  height 100%
+  width 100%
+  background no-repeat center center fixed
+  background-size cover
+
+.works-image,.contact-image,.skills-image
+  parallax()
+  height: parallax-images-height
+  display flex
+  margin-bottom 3em
+.skills-image
+  background-image url('../images/skills.jpg')
+.works-image
+  background-image url('../images/works.jpg')
+.contact-image
+  background-image url('../images/contact.jpg')

@@ -1,7 +1,7 @@
 @import "header.styl"
 @import "parallax.styl"
+@import "main.styl"
 
-parallax-images-height=500px
 
 *
   font-family Roboto
@@ -29,32 +29,16 @@ body
     height 100%
     header, main, footer
       margin auto
-    main
-      flex 1
-      .paragraph
-        display flex
-        flex-direction column
-        h1
-          width auto
-          margin auto
-        .skills-image
-          parallax(url('../images/skills.jpg'))
-        .works-image
-          parallax(url('../images/works.jpg'))
-        .contact-image
-          parallax(url('../images/contact.jpg'))
-        .works-image,.contact-image, .skills-image
-          height: parallax-images-height
-        .cards
-          display flex
-          flex-flow row wrap
-          justify-content space-around
-          .card
-            box-shadow 0 0 10px rgba(0,0,0,0.5)
-            margin 1em
-            padding 2em
-            p
-              display inline
+footer-color= #dddddd
+footer
+  height 5vh
+  border-top 1px solid footer-color
+  display flex
+  color darken(footer-color, 20%)
+  p
+    font-size 0.9em
+    margin auto
+
 .dynamic-parallax
   background-image url('../images/header.jpg')
 

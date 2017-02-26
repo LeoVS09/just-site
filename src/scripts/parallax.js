@@ -8,14 +8,14 @@ const CONTENT = "dynamic-parallax--content";
 const RATIO = 16 / 9;
 
 export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, ratio = RATIO) {
-    /* detect touch */
-    if ("ontouchstart" in window)
-        document.documentElement.className += " touch";
 
+    /* detect touch */
+    if("ontouchstart" in window){
+        document.documentElement.className = document.documentElement.className + " touch";
+    }
     /* background fix */
     if (!tag("html")[0].matches(".touch"))
         clas(parallax).forEach(el => el.style.backgroundAttachment = "fixed");
-
 
     /* fix vertical when not overflow
      call fullscreenFix() if .fullscreen content changes */
@@ -31,7 +31,6 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
 
     /* resize background images */
     function backgroundResize(ratio) {
-        console.log("background resize");
         let windowH = document.documentElement.clientHeight;
         clas(parallax).forEach(function (path) {
             // letiables
@@ -41,7 +40,7 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
 
 
             // overflowing difference
-            let diff = 0;
+            let diff = 100;
             // remaining height to have fullscreen image only on parallax
             let remainingH = 0;
             if (!tag("html")[0].matches(".touch"))
@@ -62,21 +61,13 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
 
         });
     }
-
-    console.log(67);
     const backResizeWithRatio = () => backgroundResize(ratio);
     window.addEventListener('resize', backResizeWithRatio);
     window.addEventListener("focus", backResizeWithRatio);
     backResizeWithRatio();
 
-    const scrollTop = () => Math.max(
-        document.body.scrollHeight, document.documentElement.scrollHeight,
-        document.body.offsetHeight, document.documentElement.offsetHeight,
-        document.body.clientHeight, document.documentElement.clientHeight
-    );
     /* set parallax background-position */
     function parallaxPosition(e) {
-        console.log("parallax position");
         let heightWindow = document.documentElement.clientHeight;
         let topWindow = document.body.scrollTop;
         let bottomWindow = topWindow + heightWindow;
@@ -87,8 +78,8 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
             let bottom = top + height;
             // only when in range
             if (bottomWindow > top && topWindow < bottom) {
-                let imgW = path.getAttribute("resized-imgW");
-                let imgH = path.getAttribute("resized-imgH");
+                let imgW = parseInt(path.getAttribute("resized-imgW"));
+                let imgH = parseInt(path.getAttribute("resized-imgH"));
 
                 // min when image touch top of window
                 let min = 0;
@@ -104,12 +95,10 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
                 let horizontalPosition = path.getAttribute("data-oriz-pos");
                 horizontalPosition = horizontalPosition ? horizontalPosition : "50%";
                 path.style.backgroundPosition = horizontalPosition + " " + value + "px";
-                console.log(horizontalPosition,value);
 
             }
         });
     }
-
     if (!tag("html")[0].matches(".touch")) {
         window.addEventListener('resize', parallaxPosition);
         //$(window).focus(parallaxPosition);

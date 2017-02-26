@@ -1,0 +1,18 @@
+@import "config.styl"
+
+.container-separator
+  text-align center
+  .separator
+    margin auto
+    width 20em
+    color additional-color
+    &::before, &::after
+      display block
+      width 40%
+      content " "
+      margin-top 0.5em
+      border 1px solid additional-color
+    &::before
+      float left
+    &::after
+      float right
