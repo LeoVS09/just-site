@@ -44,5 +44,7 @@
     "stylus-loader": "^2.5.0",
     "webpack": "^2.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "smoothscroll-polyfill": "^0.3.4"
+  }
 }

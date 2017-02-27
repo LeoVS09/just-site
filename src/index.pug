@@ -15,10 +15,9 @@ html
     body
         nav
             - var paragraphs =  ['about','skills','works','contact'];
-            - var navButtons =  ['Developer', ...paragraphs];
-            each word in navButtons
-                div.nav-button
-                    p=word
+            each word in paragraphs
+                div(class="nav-button" id=word)
+                    p=(word.toUpperCase())
         div#root
             header
                 //image ratio must be 16/9
@@ -75,7 +74,8 @@ html
                         ],
                         [
                             "https:/github.com/LeoVS09",
-                            "https://vk.com/id234222638"
+                            "https://vk.com/id234222638",
+                            "mailto:LeoVS010@gmail.com"
                         ]
                     ];
                     var icons = [
@@ -137,7 +137,7 @@ html
                             div.container-separator
                                 div.separator  ⌘
                         if data.text
-                            p.text #{data.text}
+                            p.text= data.text
                         if data.cards.length
                             div.cards
                                 each card in data.cards

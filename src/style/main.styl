@@ -63,11 +63,17 @@ main
     .cards
       margin-bottom 0
       justify-content center
+      animation none
       a
         margin 1em 0.2em
       p
+        margin auto
         margin-left 1em
         color text-color
+      a > .card:hover
+        animation none
+        p
+          color additional-color
       .card
         box-shadow none
         margin auto 0 0 0
@@ -76,3 +82,84 @@ main
         img
           height 3vmin
           width 3vmin
+
+@media only screen and (max-width: 1800px)
+  main
+    .paragraph
+      h1
+        font-size 4em
+      .text
+        font-size: 2em
+        width 75%
+      .cards
+        .card
+          p
+            font-size 2em
+    .contact
+      .cards
+        .card
+          img
+            height 5vmin
+            width 5vmin
+
+@media only screen and (max-width: 1024px)
+  main
+    .paragraph
+      .text
+        font-size: 1.5em
+        width 75%
+       .cards
+        .card
+          p
+            font-size 1em
+    .contact
+      .cards
+        .card
+          img
+            height 6vmin
+            width 6vmin
+
+
+@media only screen and (max-width: 820px)
+  main
+    .paragraph
+      .text
+        font-size: 1.5em
+        width 75%
+      .cards
+        .card
+          p
+            font-size 1.5em
+    .contact
+      .cards
+        .card
+          img
+            height 8vmin
+            width 8vmin
+
+@media only screen and (max-width: 500px)
+  main
+    .paragraph
+      .text
+        font-size: 1.2em
+        width 75%
+      .cards
+        .card
+          p
+            font-size 1.2em
+    .contact
+      .cards
+        .card
+          img
+            height 10vmin
+            width 10vmin
+
+@media only screen and (max-width: 350px)
+  main
+    .paragraph
+      h1
+        font-size 3em
+      .cards
+        .card
+          p
+            font-size 0.8em

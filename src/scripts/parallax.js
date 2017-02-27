@@ -95,7 +95,10 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
                 let horizontalPosition = path.getAttribute("data-oriz-pos");
                 horizontalPosition = horizontalPosition ? horizontalPosition : "50%";
                 path.style.backgroundPosition = horizontalPosition + " " + value + "px";
-
+                value = (- value) - 50;
+                value = 1 - value/50;
+                value = value < 0 ? 0 : value;
+                clas(content)[0].style.opacity = value ;
             }
         });
     }

@@ -1,5 +1,9 @@
 import stylus from "./style/index.styl"
-import dynamucParallax from './scripts/parallax'
+import dynamicParallax from './scripts/parallax'
+import fadeNav from "./scripts/nav"
 
-dynamucParallax();
+dynamicParallax();
+
+fadeNav("about");
+
 
