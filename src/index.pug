@@ -4,7 +4,8 @@ html
         meta(http-equiv="Content-type",content="text/html,charset=utf-8")
         meta(http-equiv="X-UA-Compatible",content="IE=edge")
         meta(name="viewport",content="width=device-width,initial-scale=1")
-        title Sample Site
+        link(href="favicon.ico" rel="shortcut icon" type="image/x-icon")
+        title Goncharov Vladislav
         link(href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet")
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -13,6 +14,7 @@ html
         script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
         <![endif]-->
     body
+        //TODO: Progress reading indicator
         nav
             - var paragraphs =  ['about','skills','works','contact'];
             each word in paragraphs
@@ -31,14 +33,14 @@ html
                 -
                     var tags = paragraphs;
                     var names = [
-                        "Who I",
+                        "Who am I",
                         "What I can",
                         "What I did",
                         "Get in touch"
                     ];
                     var texts = [
-                        "I'm a web/app developer based on Saint-Petersburg, Russia. I have a passion for programming and like task that challenge to me.",
-                        "I'm a developer, so I know how to resolve you problem using the latest technologies available.",
+                        "I'm a web/app developer based on Saint-Petersburg, Russia. I have a passion for programming and I like task that challenging me.",
+                        "I'm a developer, so I know how to resolve your problem using the latest technologies available.",
                         "You can see code some of my projects.",
                         "I’m currently available for work."
                     ]
@@ -81,11 +83,11 @@ html
                     var icons = [
                         [],
                         [
-                            require("./images/icon-android.jpg"),
+                            require("./images/icon-android.png"),
                             require("./images/icon-spring.png"),
                             require('./images/icon-mysql.svg'),
                             require("./images/icon-react.png"),
-                            require('./images/icon-c.jpg')
+                            require('./images/icon-c.png')
                         ],
                         [
                             require("./images/icon-java.png"),
