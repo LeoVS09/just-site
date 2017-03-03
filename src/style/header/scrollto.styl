@@ -22,8 +22,8 @@
   margin auto
   z-index 7000
   cursor pointer
-  width 180px // transform in vmin
-  padding 20px // transfornm in vmin
+  width 20vmin // transform in vmin
+  padding 1vmin
   .icon, .text
     opacity 1
     transform matrix(1, 0, 0, 1, 0, 0)
@@ -70,3 +70,14 @@
 
 
 
+//@media only screen and (max-width: 1200px)
+
+
+@media only screen and (max-width: 920px)
+  .scrollto
+    .text
+      font-size: 0.6rem;
+
+@media only screen and (max-width: 720px)
+  .scrollto
+    display none
