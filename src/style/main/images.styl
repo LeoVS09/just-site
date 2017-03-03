@@ -1,4 +1,4 @@
-@import "config.styl"
+@import "../config.styl"
 
 parallax()
   height 100%
@@ -6,15 +6,16 @@ parallax()
   background no-repeat center center fixed
   background-size cover
 
-.works-image,.contact-image,.skills-image
+.image
   parallax()
   height: parallax-images-height
   display flex
   margin-bottom 3em
   box-shadow inset 0 0 15px 5px rgba(0,0,0,0.5)
+
 .skills-image
-  background-image url('../images/skills.jpg')
-.works-image
-  background-image url('../images/works.jpg')
+  background-image url('../images/skills2.jpg')
+.projects-image
+  background-image url('../images/works2.jpg')
 .contact-image
   background-image url('../images/contact.jpg')

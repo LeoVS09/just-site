@@ -16,7 +16,7 @@ html
     body
         //TODO: Progress reading indicator
         nav
-            - var paragraphs =  ['about','skills','works','contact'];
+            - var paragraphs =  ['about','skills','projects','contact'];
             each word in paragraphs
                 div(class="nav-button" id=word)
                     p=(word.toUpperCase())
@@ -29,6 +29,7 @@ html
                         h1 I'M
                             span  GONCHAROV VLADISLAV
                         h2 Frontend & Backend Developer
+                include ./scrollto
             main
                 -
                     var tags = paragraphs;
@@ -39,9 +40,9 @@ html
                         "Get in touch"
                     ];
                     var texts = [
-                        "I'm a web/app developer based on Saint-Petersburg, Russia. I have a passion for programming and I like task that challenging me.",
-                        "I'm a developer, so I know how to resolve your problem using the latest technologies available.",
-                        "You can see code some of my projects.",
+                        "I'm a web/app developer from Saint-Petersburg, Russia. I have a passion for programming and I like to achieve the goals that challenging me.",
+                        "I'm a developer, so I know how to resolve your problem using the latest available technologies .",
+                        "You can see code of some of my projects.",
                         "I’m currently available for work."
                     ]
                     var cards = [
@@ -131,7 +132,7 @@ html
                 mixin block(data)
                     div(class=(data.tag + " paragraph"))
                         if data.image
-                            div(class=(data.tag + "-image"))
+                            div(class=(data.tag + "-image image"))
                                 h1= data.name
                         else
                             h1= data.name
