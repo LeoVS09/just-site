@@ -5,6 +5,7 @@ const clas = name => Array.prototype.slice.call(document.getElementsByClassName(
 
 const PARALLAX = "dynamic-parallax";
 const CONTENT = "dynamic-parallax--content";
+const SCROLLTO = "scrollto";
 const RATIO = 16 / 9;
 
 export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, ratio = RATIO) {
@@ -98,7 +99,10 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
                 value = (- value) - 50;
                 value = 1 - value/50;
                 value = value < 0 ? 0 : value;
-                clas(content)[0].style.opacity = value ;
+                clas(content)[0].style.opacity = value;
+                value -= 0.2;
+                value = value < 0 ? 0 : value;
+                clas(SCROLLTO)[0].style.opacity = value;
             }
         });
     }

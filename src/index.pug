@@ -63,6 +63,7 @@ html
                         [
                             0,
                             0,
+                            0,
                             "LeoVS010@gmail.com"
                         ]
                     ];
@@ -78,6 +79,7 @@ html
                         [
                             "https:/github.com/LeoVS09",
                             "https://vk.com/id234222638",
+                            "https://www.linkedin.com/in/%D0%B2%D0%BB%D0%B0%D0%B4%D0%B8%D1%81%D0%BB%D0%B0%D0%B2-%D0%B3%D0%BE%D0%BD%D1%87%D0%B0%D1%80%D0%BE%D0%B2-399b55135/",
                             "mailto:LeoVS010@gmail.com"
                         ]
                     ];
@@ -98,7 +100,8 @@ html
                         ],
                         [
                             require("./images/icon-github.png"),
-                            require("./images/icon-vk.png")
+                            require("./images/icon-vk.png"),
+                            require("./images/icon-linkedin.png")
 
                         ]
                     ]
@@ -152,5 +155,7 @@ html
                 each data in blocks
                     +block(data)
             footer.footer
+                a(href="https://github.com/LeoVS09/just-site") This site on
+                    img(src=require("./images/github-logo.png"))
                 p © 2017 Goncharov Vladislav. All rights reserved.
-                //TODO: reference to repository of site
+

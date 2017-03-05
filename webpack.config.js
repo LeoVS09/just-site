@@ -32,7 +32,7 @@ module.exports = {
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
                 loaders: [
-                    'file-loader',
+                    'file-loader?name=./images/[hash].[ext]',
                     {
                         loader: 'image-webpack-loader',
                         query: {
