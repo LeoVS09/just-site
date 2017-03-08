@@ -13,6 +13,8 @@ html
         script(src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
         script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
         <![endif]-->
+        style.
+            [data-entrance] { visibility: hidden; }
     body
         //TODO: Progress reading indicator
         nav
@@ -125,8 +127,8 @@ html
                         });
                     }
 
-                mixin mCard(card)
-                    div.card
+                mixin mCard(card,enterDelay)
+                    div.card(data-entrance="from-bottom", data-entrance-delay=enterDelay)
                         if card.icon
                             img(src=card.icon)
                         if card.text
@@ -138,20 +140,22 @@ html
                             div(class=(data.tag + "-image image"))
                                 h1= data.name
                         else
-                            h1= data.name
+                            h1(data-entrance="from-bottom")= data.name
                         if data.separator
-                            div.container-separator
+                            div.container-separator(data-entrance="from-bottom")
                                 div.separator  ⌘
                         if data.text
-                            p.text= data.text
+                            p.text(data-entrance="from-bottom")= data.text
                         if data.cards.length
                             div.cards
+                                - var cardDelay = 100
                                 each card in data.cards
                                     if card.link
                                         a(href=card.link)
-                                            +mCard(card)
+                                            +mCard(card,cardDelay)
                                     else
-                                        +mCard(card)
+                                        +mCard(card,cardDelay)
+                                    - cardDelay += 100
                 each data in blocks
                     +block(data)
             footer.footer
