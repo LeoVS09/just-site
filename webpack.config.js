@@ -1,12 +1,13 @@
 var path = require('path'),
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    poststylus = require('poststylus');
+    poststylus = require('poststylus'),
+    ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: "bundle.js",
+        filename: "bundle-[hash].js",
         path: path.resolve(__dirname, "build")
     },
     module: {
@@ -23,14 +24,16 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                use: [
-                    'style-loader',
-                    'css-loader?importLoaders=1',
-                    'stylus-loader'
-                ]
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        'css-loader?importLoaders=1',
+                        'stylus-loader'
+                    ]
+                })
             },
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
+                test: /\.(gif|png|svg|jpe?g)$/i,
                 loaders: [
                     'file-loader?name=./images/[hash].[ext]',
                     {
@@ -54,6 +57,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({template: './src/index.pug'}), //inject: "head"
+        new ExtractTextPlugin('styles-[contenthash].css'),
         new webpack.LoaderOptionsPlugin({
             options: {
                 stylus: {

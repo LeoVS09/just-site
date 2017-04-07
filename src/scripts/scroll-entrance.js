@@ -1,4 +1,4 @@
-(function() {
+export default () => {
 
     //Create the object for the entrance plugin
     let entrance = {};
@@ -8,7 +8,7 @@
     entrance.distance = "100";
     entrance.heightOffset = 0;
 
-    entrance.isElemInView = function(elem) {
+    entrance.isElemInView = elem => {
 
         let rect = elem.getBoundingClientRect();
 
@@ -24,7 +24,7 @@
 
     };
 
-    entrance.setInitialStyles = function(elem){
+    entrance.setInitialStyles = elem => {
 
         //Required style on the body to stop horizontal scrollbars
         document.body.style.overflowX = "hidden";
@@ -36,15 +36,15 @@
         elem.style.transition = "all " + (entrance.duration / 1000) + "s ease";
 
         // Add a delay is required
-        if (delay) {
+        if (delay)
             elem.style.transitionDelay = (delay / 1000) + 's';
-        }
+
 
         // Set up transition types
 
-        if (anim == "fade") {
+        if (anim == "fade")
             elem.style.opacity = "0";
-        }
+
 
         if (anim == "from-left") {
             elem.style.opacity = "0";
@@ -69,7 +69,7 @@
     };
 
 
-    entrance.enter = function(elem){
+    entrance.enter = elem => {
 
         elem.style.visibility = "visible";
         elem.style.opacity = "1";
@@ -80,25 +80,24 @@
     };
 
 
-    entrance.viewportChange = function(){
+    entrance.viewportChange = () =>
 
-        Array.prototype.map.call(entrance.elements, function(item) {
+        Array.prototype.map.call(entrance.elements, item => {
 
             if ( entrance.isElemInView(item) ){
 
                 let hasEntered = item.classList.contains("has-entered");
 
-                if (!hasEntered){
+                if (!hasEntered)
                     entrance.enter(item);
-                }
 
             }
 
         });
 
-    };
 
-    entrance.init = function(){
+
+    entrance.init = () =>{
 
         //Store the elements to be animated
         entrance.elements = document.querySelectorAll('[data-entrance]');
@@ -128,4 +127,4 @@
     addEventListener('scroll', entrance.viewportChange, false);
     addEventListener('resize', entrance.viewportChange, false);
 
-}());
+}
