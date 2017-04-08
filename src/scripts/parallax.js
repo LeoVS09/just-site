@@ -100,6 +100,7 @@ export default function dynamicParallax(parallax = PARALLAX, content = CONTENT, 
                 value = 1 - value/50;
                 value = value < 0 ? 0 : value;
                 clas(content)[0].style.opacity = value;
+                clas(content)[0].style.filter = 'blur(' + (1-value)*10+ 'px)';
                 value -= 0.2;
                 value = value < 0 ? 0 : value;
                 clas(SCROLLTO)[0].style.opacity = value;
