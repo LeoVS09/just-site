@@ -1,0 +1,13 @@
+{
+  "stylelintFile": ".stylelintrc",
+  "titles": {
+    "index": "Goncharov Vladislav"
+  },
+  "folders": {
+    "build": "build",
+    "static": "static"
+  },
+  "server": {
+    "port": 8090
+  }
+}
