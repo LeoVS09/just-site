@@ -1,13 +1,13 @@
-var path = require('path')
-var config = require('./data.json')
+import path from 'path'
+import config from './data.json'
 
-module.exports = {
+export default {
   build: {
     env: {
       NODE_ENV: JSON.stringify('production')
     },
-    index: path.resolve(__dirname, '../' + config.folders.build + '/index.html'),
-    assetsRoot: path.resolve(__dirname, '../' + config.folders.build),
+    index: path.resolve(__dirname, `../${config.folders.build}/index.html`),
+    assetsRoot: path.resolve(__dirname, `../${config.folders.build}`),
     assetsSubDirectory: config.folders.static,
     assetsPublicPath: '/',
     productionSourceMap: false,
@@ -25,7 +25,8 @@ module.exports = {
     titles: config.titles,
     templates: {
       index: "index.pug"
-    }
+    },
+    favicon: config.favicon
   },
   dev: {
     env:{

@@ -1,6 +1,5 @@
-var path = require('path')
-var config = require('../config')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+import path from 'path'
+import config from '../config'
 
 function isProduction () {
   return process.env.NODE_ENV === 'production'

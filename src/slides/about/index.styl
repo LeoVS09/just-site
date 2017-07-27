@@ -1,0 +1,32 @@
+@import '../../style/config.styl'
+
+popup-toggle-duration = 0.5s
+
+.about
+  width 100%
+  height 100%
+  display flex
+  .popup
+    margin 50% 70% auto auto
+    position relative
+    .popup-view
+      position absolute
+      bottom 0
+      background-color transparent
+      transition-property background-color
+      transition-duration popup-toggle-duration
+      h2
+        transform translateX(5rem)
+        transition-property transform
+        transition-duration popup-toggle-duration
+      p
+        opacity 0
+        transition-property opacity
+        transition-duration popup-toggle-duration
+    &:hover
+      .popup-view
+        background-color secondary-color
+        h2
+          transform translateX(0)
+        p
+          opacity 1

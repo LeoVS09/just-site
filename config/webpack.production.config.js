@@ -1,22 +1,22 @@
-var path = require('path')
-var utils = require('../server/utils')
-var webpack = require('webpack')
-var config = require('./index')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.config')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var poststylus = require('poststylus')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-var CleanWebpackPlugin = require('clean-webpack-plugin')
+import path from 'path'
+import utils from '../server/utils'
+import webpack from 'webpack'
+import config from './index'
+import merge from 'webpack-merge'
+import baseWebpackConfig from './webpack.base.config'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import poststylus from 'poststylus'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 // TODO: test check
-var env = utils.isTest()
+let env = utils.isTest()
   ? require('../config/test.env')
   : config.build.env
 
-var webpackConfig = merge(baseWebpackConfig, {
+let webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: [
       {
@@ -89,6 +89,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         : config.build.index,
       template: './src/' + config.build.templates.index,
       inject: true,
+      favicon: config.build.favicon,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -132,14 +133,15 @@ var webpackConfig = merge(baseWebpackConfig, {
       {
         exclude: ['*.html', '*.png', '*.jpeg', '*.jpg',
                    '*.gif', '*.svg', '*.mp4', '*.ttf',
-                  '*.woff', '*.woff2', '*.eot', '*.otf'],
+                  '*.woff', '*.woff2', '*.eot', '*.otf',
+                  '*.ico'],
         root: path.resolve(__dirname, '../')
       })
   ]
 })
 
 if (config.build.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+  let CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
@@ -161,4 +163,4 @@ if (config.build.bundleAnalyzerReport) {
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
-module.exports = webpackConfig
+export default webpackConfig

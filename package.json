@@ -1,6 +1,6 @@
 {
   "name": "just-site",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "open source site to help and inspire developers Edit",
   "main": "index.js",
   "private": true,
@@ -37,6 +37,7 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-stage-0": "^6.22.0",
     "babel-preset-stage-1": "^6.22.0",
+    "babel-register": "^6.24.1",
     "chalk": "^2.0.1",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",

@@ -1,12 +1,12 @@
-var path = require('path')
-var utils = require('../server/utils')
-var config = require('./index')
+import path from 'path'
+import utils from '../server/utils'
+import config from './index'
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-module.exports = {
+export default {
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
     path: config.build.assetsRoot,

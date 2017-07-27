@@ -1,5 +1,6 @@
 {
   "stylelintFile": ".stylelintrc",
+  "favicon": "src/images/favicon.ico",
   "titles": {
     "index": "Goncharov Vladislav"
   },

@@ -1,0 +1,24 @@
+@import '../../style/config.styl'
+
+.home
+  width 100%
+  height 100%
+  display flex
+  .center-wrapper
+    margin auto
+    display flex
+    flex-direction column
+    align-items center
+    .header-main
+      color primary-header-color
+    .header-second
+      color secondary-header-color
+    button.show
+      color primary-text-color
+      background transparent
+      box-shadow none
+      padding 0.2rem 2rem
+      border 2px solid primary-text-color
+      &:hover
+        color secondary-text-color
+        border-color secondary-text-color

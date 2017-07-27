@@ -1,19 +1,22 @@
-var utils = require('../server/utils')
-var webpack = require('webpack')
-var config = require('./index')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.config')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var poststylus = require('poststylus')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+import utils from '../server/utils'
+import webpack from 'webpack'
+import config from './index'
+import merge from 'webpack-merge'
+import baseWebpackConfig from './webpack.base.config'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import poststylus from 'poststylus'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 
 // add hot-reload related code to entry chunks
-Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-  baseWebpackConfig.entry[name] = ['./server/dev-client'].concat(baseWebpackConfig.entry[name])
-})
+if(typeof baseWebpackConfig.entry !== 'string')
+  Object.keys(baseWebpackConfig.entry).forEach(function (name) {
+    baseWebpackConfig.entry[name] = ['./server/dev-client'].concat(baseWebpackConfig.entry[name])
+  })
+else
+  baseWebpackConfig.entry = ['./server/dev-client', baseWebpackConfig.entry]
 
-module.exports = merge(baseWebpackConfig, {
+export default merge(baseWebpackConfig, {
   module: {
     rules: [
       {
@@ -62,7 +65,8 @@ module.exports = merge(baseWebpackConfig, {
       title: config.build.titles.index,
       filename: 'index.html',
       template: './src/' + config.build.templates.index,
-      inject: true
+      inject: true,
+      favicon: config.build.favicon
     }),
     new ExtractTextPlugin({
       filename: utils.assetsPath('styles/[name].[contenthash].css')

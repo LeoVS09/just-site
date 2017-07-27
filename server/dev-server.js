@@ -1,18 +1,22 @@
 require('./check-versions')()
 
-var config = require('../config')
-if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-}
-
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
+
+// Transform all subsequent required files with babel
+require('babel-register')
+
+var config = require('../config').default
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
+}
+
 var webpackConfig = process.env.NODE_ENV === 'testing'
-  ? require('../config/webpack.production.config')
-  : require('../config//webpack.development.config')
+  ? require('../config/webpack.production.config').default
+  : require('../config//webpack.development.config').default
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port

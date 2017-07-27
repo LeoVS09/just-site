@@ -7,8 +7,10 @@ var rm = require('rimraf')
 var path = require('path')
 var chalk = require('chalk')
 var webpack = require('webpack')
-var config = require('../config')
-var webpackConfig = require('../config/webpack.production.config')
+
+require('babel-register')
+var config = require('../config').default
+var webpackConfig = require('../config/webpack.production.config').default
 
 var spinner = ora('building for production...')
 spinner.start()
