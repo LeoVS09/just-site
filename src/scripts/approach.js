@@ -1,11 +1,14 @@
 
 let isUndefined = a => typeof a === 'undefined'
 
-export default function (elem, {perspective, start, step, end, units = 'px', beginSet = true} = {}) {
-  perspective = isUndefined(perspective) ? 1000 : perspective
-  start = isUndefined(start) ? 0 : start
-  step = isUndefined(step) ? 1 : step
-  end = isUndefined(end) ? perspective : end
+export default function (elem, {
+  perspective = 1000,
+  start = 0,
+  step = 1,
+  end = perspective,
+  units = 'px',
+  beginSet = true
+} = {}) {
 
   function calcMoveAway (current) {
     let newValue = current - step

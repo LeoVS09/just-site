@@ -80,7 +80,8 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "smoothscroll-polyfill": "^0.3.4"
+    "smoothscroll-polyfill": "^0.3.4",
+    "three": "^0.86.0"
   },
   "engines": {
     "node": ">= 4.0.0",

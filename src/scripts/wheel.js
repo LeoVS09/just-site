@@ -1,3 +1,4 @@
+import { EventEmitter } from './utils'
 
 // Mouse wheel event api
 
@@ -19,18 +20,7 @@ export default function (elem = window) {
     isOnMouseWheel = true
     elem.attachEvent('onmousewheel', onWheel)
   }
-  const wheel = {
-    __upActions: [],
-    __downActions: [],
-    up (action) {
-      this.__upActions.push(action)
-      return this
-    },
-    down (action) {
-      this.__downActions.push(action)
-      return this
-    }
-  }
+  const wheel = new EventEmitter(['up','down'])
 
   function onWheel (e) {
     e = e || window.event
@@ -39,9 +29,9 @@ export default function (elem = window) {
     if (!delta) return
 
     if (delta > 0) {
-      wheel.__downActions.forEach(action => action())
+      wheel.emit('down')
     } else {
-      wheel.__upActions.forEach(action => action())
+      wheel.emit('up')
     }
   }
 
