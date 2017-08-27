@@ -1,5 +1,5 @@
 
-export function EventEmitter(events = []){
+export function EventEmitter (events = []) {
   events.forEach(name => {
     let actions = []
     this[`__${name}Actions`] = actions
@@ -10,6 +10,6 @@ export function EventEmitter(events = []){
   })
   this.emit = event => {
     this[`__${event}Actions`] &&
-    this[`__${event}Actions`].forEach( action => action())
+    this[`__${event}Actions`].forEach(action => action())
   }
 }

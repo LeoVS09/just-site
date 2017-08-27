@@ -20,7 +20,7 @@ export default function (elem = window) {
     isOnMouseWheel = true
     elem.attachEvent('onmousewheel', onWheel)
   }
-  const wheel = new EventEmitter(['up','down'])
+  const wheel = new EventEmitter(['up', 'down'])
 
   function onWheel (e) {
     e = e || window.event
