@@ -1,5 +1,6 @@
 import '../../canvas.styl'
 import { Physic } from './physic'
+import { CameraControls } from './controls'
 import * as THREE from 'three'
 
 export class GraphicEngine {
@@ -31,9 +32,12 @@ export class GraphicEngine {
     )
     this.physicObjects.push(this.camera)
 
+    this.controls = new CameraControls(this.camera.mesh, canvas)
+
     scene = new THREE.Scene()
     scene.add(this.camera.mesh)
 
+    // TODO: refactor, logic must be out of graphic engine
     this.cube = new THREE.Mesh(
       new THREE.BoxGeometry(200, 200, 200),
       new THREE.MeshBasicMaterial({
@@ -70,7 +74,6 @@ export class GraphicEngine {
     directionalLight.position.set(200, 200, 0).normalize()
     scene.add(directionalLight)
 
-    // --------------
     renderer = new THREE.WebGLRenderer({canvas})
     renderer.setSize(window.innerWidth, window.innerHeight)
 
@@ -104,7 +107,10 @@ export class GraphicEngine {
 
   render () {
     let delta = this.clock.getDelta()
-    for (let o of this.physicObjects) { o.tick(delta) }
+
+    for (let o of this.physicObjects) { o.update(delta) }
+    this.controls.update(delta)
+
     this.renderer.render(this.scene, this.camera.mesh)
   }
 

@@ -80,6 +80,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "cubic-bezier": "^0.1.2",
     "smoothscroll-polyfill": "^0.3.4",
     "three": "^0.86.0"
   },
