@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 
 export class Camera {
-  rollAngle = 0.1
   rollSpeed = 0.5
   autoForward = false
   moveState = {
@@ -14,8 +13,9 @@ export class Camera {
   }
   rotationVector = new THREE.Vector3(0, 0, 0)
 
-  constructor (object, domElement) {
+  constructor (object, domElement, angle = 0.05) {
     this.object = object
+    this.rollAngle = angle
 
     this.domElement = (domElement !== undefined) ? domElement : document
     if (domElement) this.domElement.setAttribute('tabindex', -1)
@@ -56,7 +56,7 @@ export class Camera {
     this.rotationVector.y = (-this.moveState.yawRight + this.moveState.yawLeft) * this.rollAngle
     this.rotationVector.z = 0
 
-    console.log('rotate:', this.rotationVector)
+    // console.log('rotate:', this.rotationVector)
   }
 
   getContainerDimensions () {

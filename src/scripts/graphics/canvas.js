@@ -5,7 +5,8 @@ import * as THREE from 'three'
 
 export class GraphicEngine {
   positionOfCamera = 1000
-  AngleOfCamera = 60
+  // TODO: work with angle and max z formula
+  AngleOfCamera = 35
   BackgroundSizeX = 1920
   BackgroundSizeY = 1200
   physicObjects = []
@@ -13,8 +14,9 @@ export class GraphicEngine {
   calcCameraProps () {
     // calculating max z offset of camera
     this.cameraRatio = window.innerWidth / window.innerHeight
-    let maxCameraZPositionY = this.BackgroundSizeY / (2 * Math.tan((this.AngleOfCamera / 2) * Math.PI / 180))
-    let maxCameraZPositionX = this.BackgroundSizeX / (2 * Math.tan((this.AngleOfCamera * this.cameraRatio / 2) * Math.PI / 180))
+    let tan = angle => Math.tan(angle * Math.PI / 180)
+    let maxCameraZPositionY = this.BackgroundSizeY / (2 * tan(this.AngleOfCamera / 2))
+    let maxCameraZPositionX = this.BackgroundSizeX / (2 * tan(this.AngleOfCamera * this.cameraRatio / 2))
     this.MaxCameraZPosition = maxCameraZPositionX < maxCameraZPositionY ? maxCameraZPositionX : maxCameraZPositionY
 
     this.stepOfCamera = this.MaxCameraZPosition / this.countPositions
@@ -40,7 +42,7 @@ export class GraphicEngine {
     // TODO: refactor, logic must be out of graphic engine
     this.cube = new THREE.Mesh(
       new THREE.BoxGeometry(200, 200, 200),
-      new THREE.MeshBasicMaterial({
+      new THREE.MeshLambertMaterial({
         color: new THREE.Color('green'),
         wireframe: false
       })
@@ -65,13 +67,74 @@ export class GraphicEngine {
     )
     scene.add(backgroundMesh)
 
-    // // add subtle ambient lighting
+    // add objects
+    let cloud = new THREE.Mesh(
+      new THREE.PlaneGeometry(700, 400, 0),
+      new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load(require('../../images/cloud.png')),
+        transparent: true,
+        opacity: 0.8
+        // lights: true
+        // combine: THREE.MixOperation
+      })
+    )
+    cloud.position.z = 200
+    cloud.position.y = -200
+    cloud.position.x = 400
+    scene.add(cloud)
+
+    let cloud2 = new THREE.Mesh(
+      new THREE.PlaneGeometry(700, 400, 0),
+      new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load(require('../../images/cloud2.png')),
+        transparent: true,
+        opacity: 0.8
+        // lights: true
+        // combine: THREE.MixOperation
+      })
+    )
+    cloud2.position.z = 300
+    cloud2.position.y = 200
+    cloud2.position.x = -200
+    scene.add(cloud2)
+
+    let cloud3 = new THREE.Mesh(
+      new THREE.PlaneGeometry(700, 400, 0),
+      new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load(require('../../images/cloud3.png')),
+        transparent: true,
+        opacity: 0.8
+        // lights: true
+        // combine: THREE.MixOperation
+      })
+    )
+    cloud3.position.z = 100
+    cloud3.position.y = 300
+    cloud3.position.x = 500
+    scene.add(cloud3)
+
+    let cloud4 = new THREE.Mesh(
+      new THREE.PlaneGeometry(700, 400, 0),
+      new THREE.MeshBasicMaterial({
+        map: new THREE.TextureLoader().load(require('../../images/cloud4.png')),
+        transparent: true,
+        opacity: 0.8
+        // lights: true
+        // combine: THREE.MixOperation
+      })
+    )
+    cloud4.position.z = 200
+    cloud4.position.y = -100
+    cloud4.position.x = -300
+    scene.add(cloud4)
+
+    // add subtle ambient lighting
     let ambientLight = new THREE.AmbientLight(0x555555)
     scene.add(ambientLight)
     //
     // // add directional light source
     let directionalLight = new THREE.DirectionalLight(0xffffff)
-    directionalLight.position.set(200, 200, 0).normalize()
+    directionalLight.position.set(500, 500, 300).normalize()
     scene.add(directionalLight)
 
     renderer = new THREE.WebGLRenderer({canvas})
@@ -88,8 +151,13 @@ export class GraphicEngine {
     if (pos > this.countPositions - 1) {
       pos = this.countPositions - 1
     }
-    this.positionOfCamera = this.stepOfCamera * (pos + 1)
-    this.camera.setPositionZ(this.positionOfCamera)
+
+    let nextPosition = this.stepOfCamera * (pos + 1)
+    // eslint-disable-next-line
+    if (nextPosition != this.positionOfCamera) {
+      this.positionOfCamera = nextPosition
+      this.camera.setPositionZ(this.positionOfCamera)
+    }
   }
 
   start () {
