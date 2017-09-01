@@ -1,10 +1,10 @@
 import Detector from './Detector'
 import { GraphicEngine } from './canvas'
 
-export default (canvas, countPositions) => {
+export default (canvas, countPositions, duration) => {
   let engine
   if (Detector.webgl) {
-    engine = new GraphicEngine(canvas, countPositions)
+    engine = new GraphicEngine(canvas, countPositions, duration)
     engine.start()
   } else {
     // TODO: add more logic and other warning message

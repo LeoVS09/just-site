@@ -21,23 +21,29 @@ export default function (elem, {
   }
 
   let view = {
+
     setTransformZ (z) {
       elem.style.transform = `perspective(${perspective}${units}) translateZ(${z}${units})`
     },
+
     getTransformZ () {
       let transform = elem.style.transform
       let indexStart = transform.indexOf('translateZ(')
       return +transform.slice(indexStart + 11, transform.indexOf(units + ')', indexStart))
     },
+
     moveAway (newStep) {
       if (!isUndefined(newStep)) { step = newStep }
       this.setTransformZ(calcMoveAway(this.getTransformZ()))
     },
+
     comeUp (newStep) {
       if (!isUndefined(newStep)) { step = newStep }
       this.setTransformZ(calcComeUp(this.getTransformZ()))
     }
+
   }
+
   if (beginSet) { view.setTransformZ(start) }
   return view
 }

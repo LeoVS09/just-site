@@ -1,7 +1,9 @@
-import '../../canvas.styl'
+import '../../style/canvas.styl'
 import { Physic } from './physic'
 import { CameraControls } from './controls'
 import * as THREE from 'three'
+
+const defaultAnimationDuration = 1 // in seconds
 
 export class GraphicEngine {
   positionOfCamera = 1000
@@ -12,17 +14,19 @@ export class GraphicEngine {
   physicObjects = []
 
   calcCameraProps () {
-    // calculating max z offset of camera
     this.cameraRatio = window.innerWidth / window.innerHeight
+
+    // calculating max z offset of camera
     let tan = angle => Math.tan(angle * Math.PI / 180)
     let maxCameraZPositionY = this.BackgroundSizeY / (2 * tan(this.AngleOfCamera / 2))
     let maxCameraZPositionX = this.BackgroundSizeX / (2 * tan(this.AngleOfCamera * this.cameraRatio / 2))
+
     this.MaxCameraZPosition = maxCameraZPositionX < maxCameraZPositionY ? maxCameraZPositionX : maxCameraZPositionY
 
     this.stepOfCamera = this.MaxCameraZPosition / this.countPositions
   }
 
-  constructor (canvas, countPositions) {
+  constructor (canvas, countPositions, duration = defaultAnimationDuration) {
     let scene, renderer
     this.countPositions = countPositions
 
@@ -30,7 +34,7 @@ export class GraphicEngine {
 
     this.camera = new Physic(
       new THREE.PerspectiveCamera(this.AngleOfCamera, this.cameraRatio, 1, 10000),
-      {z: this.stepOfCamera}
+      { z: this.stepOfCamera, duration }
     )
     this.physicObjects.push(this.camera)
 
@@ -71,7 +75,7 @@ export class GraphicEngine {
     let cloud = new THREE.Mesh(
       new THREE.PlaneGeometry(700, 400, 0),
       new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load(require('../../images/cloud.png')),
+        map: new THREE.TextureLoader().load(require('../../images/cloud-c.png')),
         transparent: true,
         opacity: 0.8
         // lights: true
@@ -86,7 +90,7 @@ export class GraphicEngine {
     let cloud2 = new THREE.Mesh(
       new THREE.PlaneGeometry(700, 400, 0),
       new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load(require('../../images/cloud2.png')),
+        map: new THREE.TextureLoader().load(require('../../images/cloud2-c.png')),
         transparent: true,
         opacity: 0.8
         // lights: true
@@ -101,7 +105,7 @@ export class GraphicEngine {
     let cloud3 = new THREE.Mesh(
       new THREE.PlaneGeometry(700, 400, 0),
       new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load(require('../../images/cloud3.png')),
+        map: new THREE.TextureLoader().load(require('../../images/cloud3-c.png')),
         transparent: true,
         opacity: 0.8
         // lights: true
@@ -116,7 +120,7 @@ export class GraphicEngine {
     let cloud4 = new THREE.Mesh(
       new THREE.PlaneGeometry(700, 400, 0),
       new THREE.MeshBasicMaterial({
-        map: new THREE.TextureLoader().load(require('../../images/cloud4.png')),
+        map: new THREE.TextureLoader().load(require('../../images/cloud4-c.png')),
         transparent: true,
         opacity: 0.8
         // lights: true

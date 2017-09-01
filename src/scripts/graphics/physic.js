@@ -1,7 +1,6 @@
 import bezier from 'cubic-bezier'
 
-const defaultAnimationDuration = 1 // in seconds
-const timingFuncEpsilon = (1000 / 60 / defaultAnimationDuration) / 4
+const timingFuncEpsilon = (1000 / 60) / 4
 
 export const bazierFunc = {
   easeIn: bezier(0.42, 0, 1.0, 1.0, timingFuncEpsilon),
@@ -12,7 +11,7 @@ export const bazierFunc = {
 export class Physic {
   constructor (mesh, {
     x = 0, y = 0, z = 0,
-    duration = defaultAnimationDuration,
+    duration,
     animationFunc = bazierFunc.ease
   } = {}) {
     this.mesh = mesh

@@ -4,7 +4,16 @@ include components/view/index
 include slides/home/index
 include slides/about/index
 include components/navigation/index
+include components/description/index
 
 block content
     main
         canvas
+        +view()
+            .view-main
+                .view-slides
+                    +description('3rem','3rem','Who am I', "I'm a web / app developer from Saint - Petersburg, Russia. I have a passion for programming and I like to achieve the goals that challenging me.")
+                    +description('15%','25%','What I can', "I'm a developer, so I know how to resolve your problem using the latest available technologies.")
+                    +description('23%','40%','What I did', "You can see code of some of my projects.")
+                    +description('5rem','4rem','Get in touch', "I’m currently available for work.")
+                    +description('2rem','3rem','App developer from Saint', "like to achieve the goals that challenging me.")

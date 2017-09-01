@@ -1,0 +1,8 @@
+
+mixin description(left, top, header, text)
+    .description-wrapper
+        .description(style="left:"+left+";top:"+top+";")
+            button +
+            .header= header
+            .text
+                p= text
